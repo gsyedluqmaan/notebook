@@ -3,17 +3,15 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, useRef } from "react";
 import { getFile, saveFile } from "../../lib/actions";
-import Link from "next/link";\
-import type { ExcalidrawProps } from "@excalidraw/excalidraw/types";
-
+import Link from "next/link";
 
 // FIXED CSS import for latest Excalidraw
 import "@excalidraw/excalidraw/index.css";
 
 const Excalidraw = dynamic(
   async () => {
-    const module = await import("@excalidraw/excalidraw");
-    return module.default || (module as any).Excalidraw;
+    const mod = await import("@excalidraw/excalidraw");
+    return mod.Excalidraw;
   },
   { ssr: false }
 );
@@ -123,7 +121,8 @@ export default function WhiteboardPage({
         <Excalidraw
           onChange={handleChange}
           initialData={{
-            elements: file?.data || [],
+            elements: file?.data?.elements || [],
+            files: file?.data?.files || {},
             appState: {
               viewBackgroundColor: "#ffffff",
             },
