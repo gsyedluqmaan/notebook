@@ -13,16 +13,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Debug environment
+      - name: Show working directory (debug)
         run: |
-          whoami
           pwd
           ls -la
-          docker --version
-          docker-compose --version
-
-      - name: Stop existing containers
-        run: docker-compose down || true
 
       - name: Build and start containers
-        run: docker-compose up -d --build
+        working-directory: ${{ github.workspace }}
+        run: |
+          ls -la
+          docker-compose down || true
+          docker-compose up -d --build
