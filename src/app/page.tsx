@@ -65,7 +65,7 @@ export default function Home() {
           <div className="text-center py-12 text-gray-500">Loading...</div>
         ) : folders.length === 0 ? (
           <div className="text-center py-12 text-gray-500">
-            No folders yet. Create one to get started!
+            No folders yet. Create one to get started
           </div>
         ) : (
           <div className="grid gap-4">
