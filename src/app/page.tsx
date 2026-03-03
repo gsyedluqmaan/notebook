@@ -205,11 +205,6 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      window.location.href = "/auth";
-      return;
-    }
     loadFolders();
   }, []);
 
