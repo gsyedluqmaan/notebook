@@ -1,0 +1,26 @@
+name: Deploy Notebook App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show working directory (debug)
+        run: |
+          pwd
+          ls -la
+
+      - name: Build and start containers
+        working-directory: ${{ github.workspace }}
+        run: |
+          ls -la
+          docker-compose down || true
+          docker-compose up -d --build
