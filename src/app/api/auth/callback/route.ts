@@ -93,10 +93,7 @@ export async function GET(req: Request) {
     );
 
     // 6️⃣ ✅ FIXED: Set COOKIE + Redirect
-    const frontendUrl =
-      process.env.NODE_ENV === "production"
-        ? process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com"
-        : "http://localhost:3000";
+    const frontendUrl = process.env.NEXT_PUBLIC_BASE_URL!;
 
     const response = NextResponse.redirect(
       `${frontendUrl}/auth/callback?token=${appToken}`,
